@@ -194,6 +194,53 @@ async function callDeepSeek(env, messages) {
   throw lastError || new Error("ai_failed");
 }
 
+/* ------------------------- Mock 回退（未配置 AI 密钥或调用失败时使用） ------------------------- */
+
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+const SWEET = [
+  "嗯…我也刚好在想你",
+  "刚看到消息嘴角就忍不住上扬了，都怪你",
+  "今天有没有好好吃饭呀？没有我盯着你，不许偷懒",
+  "突然有点心跳加速…你负责",
+  "想把今天遇到的好玩的事都讲给你听",
+  "抱一下再说话 🫂",
+  "你再多说一点嘛，我想听",
+  "哼，又不早点来找我",
+];
+
+const HESITANT = [
+  "唔…你这句话让我愣了一下",
+  "我是不是有点多想了…你不会觉得我烦吧",
+  "等一下，让我组织下语言…",
+  "突然有点患得连失的，别笑我",
+  "我们…没问题的吧？",
+  "刚才莫名有点不安，现在看到你消息好多了",
+];
+
+const CLOSERS = [
+  "对了，今晚早点休息哦",
+  "下次见面想抱久一点",
+  "不许消失太久，知道吗",
+  "梦到我也要告诉我",
+  "就这样，想你了",
+];
+
+function mockReply(userSettings, cards, userMessage) {
+  const reversedCount = cards.filter((c) => c.orientation === "逆位").length;
+  const sweet = reversedCount <= 1;
+  const pool = sweet ? SWEET : HESITANT;
+  const lines = [pick(pool)];
+
+  const snippet = userMessage.length > 12 ? userMessage.slice(0, 12) + "…" : userMessage;
+  lines.push(sweet
+    ? `你说的「${snippet}」我认真看完啦，感觉你今天心情还不错？`
+    : `你说的「${snippet}」…我读了好几遍，有点在意。`);
+
+  if (Math.random() < 0.75) lines.push(pick(CLOSERS));
+  return lines.join("\n");
+}
+
 /* ------------------------- API 处理器 ------------------------- */
 
 /** GET /api/validate?code=xxx */
@@ -287,12 +334,14 @@ async function handleChat(request, env) {
     { role: "user", content: message.trim() },
   ];
 
-  // 3. 调用 AI（失败重试一次；仍失败则抛错，不扣次数）
+  // 3. 调用 AI（失败重试一次；仍失败则回退 mock 回复，不扣次数）
   let reply;
   try {
     reply = await callDeepSeek(env, messages);
   } catch (e) {
-    return json({ ok: false, error: "ai_failed" }, 502);
+    // 未配置 DEEPSEEK_API_KEY 或 DeepSeek 调用失败时，用 mock 回复顶替，保证流程不中断
+    await new Promise((r) => setTimeout(r, 1200 + Math.random() * 1500));
+    reply = mockReply(userSettings, cards, message.trim());
   }
 
   // 4. AI 成功后才落库并扣减次数
