@@ -1,0 +1,9 @@
+# 密钥与本地文件，绝不提交
+.env
+.env.local
+*.key
+dev-server.log
+node_modules/
+.workbuddy/
+.DS_Store
+wrangler/.wrangler/

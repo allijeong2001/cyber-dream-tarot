@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>赛博梦占 · 管理端</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #5C3D4A;
+      --text-2: #9B7B88;
+      --btn-a: #FF9EC7;
+      --btn-b: #FF6B9D;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px;
+      background: linear-gradient(160deg, #FFE5F1 0%, #FFF0F7 100%);
+      background-attachment: fixed;
+    }
+    .wrap { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 26px; }
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 12px 44px rgba(255, 107, 157, 0.18);
+      padding: 36px 30px;
+      position: relative;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 1.5px dashed rgba(255, 158, 199, 0.75);
+      border-radius: 17px;
+      pointer-events: none;
+    }
+    h1 {
+      font-family: "Noto Serif SC", serif;
+      font-size: 24px;
+      letter-spacing: 4px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-family: "Noto Serif SC", serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .sub {
+      text-align: center;
+      color: var(--text-2);
+      font-size: 13px;
+      margin-bottom: 26px;
+    }
+    .form-group { margin-bottom: 18px; position: relative; z-index: 1; }
+    label { display: block; font-size: 14px; margin-bottom: 8px; font-weight: 500; }
+    input[type="text"], input[type="password"], input[type="number"] {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid rgba(255, 158, 199, 0.55);
+      border-radius: 14px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text);
+      outline: none;
+      background: rgba(255, 255, 255, 0.85);
+    }
+    input:focus { border-color: var(--btn-b); box-shadow: 0 0 0 4px rgba(255, 182, 211, 0.35); }
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      z-index: 1;
+    }
+    .check-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--btn-b); cursor: pointer; }
+    .hint { font-size: 12px; color: var(--text-2); margin-top: 6px; }
+    button {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      padding: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--btn-a), var(--btn-b));
+      box-shadow: 0 8px 22px rgba(255, 107, 157, 0.35);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      z-index: 1;
+    }
+    button:hover { transform: scale(1.03); box-shadow: 0 0 26px rgba(255, 182, 211, 0.95); }
+    button:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    button.ghost {
+      background: #fff;
+      color: #E0567E;
+      border: 1.5px solid rgba(255, 158, 199, 0.7);
+      box-shadow: none;
+    }
+    .result {
+      margin-top: 20px;
+      background: #FFF7FB;
+      border: 1.5px solid rgba(255, 214, 232, 0.9);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 14px;
+      line-height: 1.9;
+      display: none;
+      word-break: break-all;
+      position: relative;
+      z-index: 1;
+    }
+    .result .link { color: #E0567E; font-weight: 600; }
+    .result .pwd { color: #E0567E; font-weight: 700; font-size: 16px; letter-spacing: 2px; }
+    .result button {
+      width: auto;
+      padding: 6px 18px;
+      font-size: 13px;
+      margin-top: 8px;
+      margin-right: 8px;
+    }
+    .error { color: #E0567E; font-size: 13px; min-height: 18px; margin-bottom: 6px; }
+    .info-row { display: flex; justify-content: space-between; font-size: 14px; padding: 4px 0; }
+    .history { margin-top: 18px; font-size: 12px; color: var(--text-2); line-height: 1.9; position: relative; z-index: 1; word-break: break-all; }
+    .divider { border: none; border-top: 1.5px dashed rgba(255, 158, 199, 0.5); margin: 22px 0; position: relative; z-index: 1; }
+    .btn-row { display: flex; gap: 10px; position: relative; z-index: 1; }
+    .btn-row button { flex: 1; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- 卡片一：生成新链接 -->
+    <div class="card">
+      <h1>赛博梦占 · 管理端</h1>
+      <p class="sub">生成专属梦境链接（此页面请勿外泄）</p>
+
+      <div class="form-group">
+        <label for="admin-key">管理员密钥（默认 123456）</label>
+        <input id="admin-key" type="password" value="123456" autocomplete="off">
+        <p class="hint">已自动填入默认密钥 123456，无需修改</p>
+      </div>
+
+      <div class="form-group">
+        <label for="total">消息总次数</label>
+        <input id="total" type="number" min="1" max="99999" value="20">
+        <p class="hint">用户每发送一条消息消耗 1 次，AI 调用失败不扣减</p>
+      </div>
+
+      <div class="form-group">
+        <label class="check-row">
+          <input id="auto-pwd" type="checkbox" checked>
+          <span>自动生成随机 6 位数字密码</span>
+        </label>
+        <p class="hint">生成后密码显示在下方，连同链接一起发给客户即可</p>
+      </div>
+
+      <div class="form-group" id="manual-pwd-group" style="display:none">
+        <label for="password">访问密码（手动指定）</label>
+        <input id="password" type="text" placeholder="留空则无需密码" maxlength="64" autocomplete="off">
+        <p class="hint">设置后用户打开链接需先通过密码验证</p>
+      </div>
+
+      <p id="err" class="error"></p>
+      <button id="create-btn">生成链接</button>
+
+      <div id="result" class="result">
+        <div>✦ 链接生成成功</div>
+        <div>code：<span id="r-code"></span></div>
+        <div>次数：<span id="r-total"></span> 次</div>
+        <div id="r-pwd-row" style="display:none">密码：<span class="pwd" id="r-pwd"></span></div>
+        <div class="link" id="r-url"></div>
+        <div>
+          <button id="copy-btn">复制链接</button>
+          <button id="copy-both-btn">复制链接 + 密码</button>
+        </div>
+      </div>
+
+      <div class="history" id="created-history"></div>
+    </div>
+
+    <!-- 卡片二：管理已有链接 -->
+    <div class="card">
+      <h2>管理已有链接</h2>
+      <p class="sub">查询客户链接信息、修改剩余次数或密码</p>
+
+      <div class="form-group">
+        <label for="q-code">链接 code</label>
+        <input id="q-code" type="text" placeholder="例如 DEMO1234" autocomplete="off">
+      </div>
+
+      <p id="q-err" class="error"></p>
+      <div class="btn-row" style="margin-bottom: 18px">
+        <button id="query-btn" class="ghost">查询</button>
+      </div>
+
+      <div id="q-result" style="display:none; position:relative; z-index:1">
+        <div class="result" style="display:block; margin-top:0">
+          <div class="info-row"><span>code</span><span id="q-show-code"></span></div>
+          <div class="info-row"><span>总次数</span><span id="q-total"></span></div>
+          <div class="info-row"><span>剩余次数</span><span id="q-remaining"></span></div>
+          <div class="info-row"><span>密码</span><span id="q-pwd"></span></div>
+          <div class="info-row"><span>创建时间</span><span id="q-created"></span></div>
+          <div class="link" id="q-url"></div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="form-group">
+          <label for="q-set-remaining">修改剩余次数</label>
+          <input id="q-set-remaining" type="number" min="0" max="99999" placeholder="填入新的剩余次数">
+          <p class="hint">例如客户加购，把 0 改成 30</p>
+        </div>
+
+        <div class="form-group">
+          <label class="check-row">
+            <input id="q-auto-pwd" type="checkbox">
+            <span>重置为新的随机 6 位密码</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="q-set-pwd">手动指定新密码（可选）</label>
+          <input id="q-set-pwd" type="text" placeholder="与上面勾选二选一，都留空则不改密码" maxlength="64" autocomplete="off">
+        </div>
+
+        <p id="q-save-err" class="error"></p>
+        <div class="btn-row">
+          <button id="save-btn">保存修改</button>
+          <button id="clear-pwd-btn" class="ghost">清除密码</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const API_BASE = String(window.CYBER_DREAM_API_BASE || "").replace(/\/+$/, "");
+      const api = (path) => API_BASE + path;
+      const historyList = [];
+      const ADMIN_KEY_STORE = "cyber_dream_admin_key";
+
+      // 记忆管理员密钥：优先用上次保存的，默认 123456
+      $("admin-key").value = localStorage.getItem(ADMIN_KEY_STORE) || "123456";
+      function saveAdminKey() {
+        try { localStorage.setItem(ADMIN_KEY_STORE, $("admin-key").value.trim()); } catch {}
+      }
+
+      /** 用当前页面地址构造客户链接（兼容 GitHub Pages / Worker 同域部署） */
+      function buildLink(code) {
+        const base = location.origin + location.pathname.replace(/admin\.html.*$/, "");
+        return base + "?code=" + code;
+      }
+
+      async function post(path, body) {
+        const res = await fetch(api(path), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        return res.json();
+      }
+
+      function copyText(text, btn) {
+        const label = btn.dataset.label;
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = "已复制 ✓";
+          setTimeout(() => (btn.textContent = label), 1600);
+        }).catch(() => {});
+      }
+
+      /* ---------- 生成新链接 ---------- */
+
+      $("auto-pwd").addEventListener("change", () => {
+        $("manual-pwd-group").style.display = $("auto-pwd").checked ? "none" : "block";
+      });
+
+      $("create-btn").addEventListener("click", async () => {
+        const adminKey = $("admin-key").value.trim();
+        const total = parseInt($("total").value, 10);
+        const useAuto = $("auto-pwd").checked;
+        const password = $("password").value.trim();
+        const err = $("err");
+        err.textContent = "";
+        saveAdminKey();
+
+        if (!adminKey) { err.textContent = "请输入管理员密钥"; return; }
+        if (!Number.isInteger(total) || total < 1) { err.textContent = "请输入有效的次数"; return; }
+
+        const btn = $("create-btn");
+        btn.disabled = true;
+        btn.textContent = "正在生成…";
+        try {
+          const data = await post("/api/create-code", {
+            adminKey,
+            total,
+            autoPassword: useAuto || undefined,
+            password: !useAuto ? (password || undefined) : undefined,
+          });
+          if (!data.ok) {
+            err.textContent = data.error === "forbidden" ? "管理员密钥不正确" : "生成失败：" + (data.error || "未知错误");
+            return;
+          }
+          const url = buildLink(data.code);
+          $("r-code").textContent = data.code;
+          $("r-total").textContent = data.total;
+          if (data.password) {
+            $("r-pwd-row").style.display = "block";
+            $("r-pwd").textContent = data.password;
+          } else {
+            $("r-pwd-row").style.display = "none";
+          }
+          $("r-url").textContent = url;
+          $("result").style.display = "block";
+          historyList.unshift(url + (data.password ? "（密码 " + data.password + "）" : ""));
+          $("created-history").innerHTML = "本次会话已生成：<br>" + historyList.map((u) => "· " + u).join("<br>");
+        } catch (e) {
+          err.textContent = "网络异常，请稍后再试";
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "生成链接";
+        }
+      });
+
+      $("copy-btn").dataset.label = "复制链接";
+      $("copy-both-btn").dataset.label = "复制链接 + 密码";
+
+      $("copy-btn").addEventListener("click", function () {
+        copyText($("r-url").textContent, this);
+      });
+
+      $("copy-both-btn").addEventListener("click", function () {
+        const pwd = $("r-pwd").textContent;
+        const text = $("r-url").textContent + (pwd ? "\n密码：" + pwd : "");
+        copyText(text, this);
+      });
+
+      /* ---------- 管理已有链接 ---------- */
+
+      function fillQuery(data) {
+        const link = data.link;
+        $("q-result").style.display = "block";
+        $("q-show-code").textContent = link.code;
+        $("q-total").textContent = link.total + " 次";
+        $("q-remaining").textContent = link.remaining + " 次";
+        $("q-pwd").textContent = link.password || "（无密码）";
+        $("q-created").textContent = (link.createdAt || "").replace("T", " ").slice(0, 16);
+        $("q-url").textContent = buildLink(link.code);
+        $("q-set-remaining").value = "";
+        $("q-set-pwd").value = "";
+        $("q-auto-pwd").checked = false;
+      }
+
+      $("query-btn").addEventListener("click", async () => {
+        const adminKey = $("admin-key").value.trim();
+        const code = $("q-code").value.trim();
+        const err = $("q-err");
+        err.textContent = "";
+        saveAdminKey();
+        if (!adminKey) { err.textContent = "请先在上方输入管理员密钥"; return; }
+        if (!code) { err.textContent = "请输入要查询的 code"; return; }
+        try {
+          const data = await post("/api/update-code", { adminKey, code });
+          if (!data.ok) {
+            err.textContent = data.error === "invalid_code" ? "链接不存在" : data.error === "forbidden" ? "管理员密钥不正确" : "查询失败：" + (data.error || "未知错误");
+            $("q-result").style.display = "none";
+            return;
+          }
+          fillQuery(data);
+        } catch (e) {
+          err.textContent = "网络异常，请稍后再试";
+        }
+      });
+
+      $("save-btn").addEventListener("click", async () => {
+        const adminKey = $("admin-key").value.trim();
+        const code = $("q-code").value.trim();
+        const err = $("q-save-err");
+        err.textContent = "";
+        if (!code) { err.textContent = "请先查询要修改的链接"; return; }
+
+        const remainingRaw = $("q-set-remaining").value.trim();
+        const newPwd = $("q-set-pwd").value.trim();
+        const useAuto = $("q-auto-pwd").checked;
+        if (remainingRaw === "" && !newPwd && !useAuto) {
+          err.textContent = "没有需要保存的修改";
+          return;
+        }
+
+        const body = { adminKey, code };
+        if (remainingRaw !== "") body.remaining = parseInt(remainingRaw, 10);
+        if (useAuto) body.autoPassword = true;
+        else if (newPwd) body.password = newPwd;
+
+        const btn = $("save-btn");
+        btn.disabled = true;
+        btn.textContent = "保存中…";
+        try {
+          const data = await post("/api/update-code", body);
+          if (!data.ok) {
+            err.textContent = data.error === "invalid_code" ? "链接不存在" : data.error === "forbidden" ? "管理员密钥不正确" : "保存失败：" + (data.error || "未知错误");
+            return;
+          }
+          fillQuery(data);
+          $("q-save-err").style.color = "#4CAF7D";
+          $("q-save-err").textContent = "✓ 修改已保存";
+          setTimeout(() => { $("q-save-err").textContent = ""; $("q-save-err").style.color = ""; }, 2200);
+        } catch (e) {
+          err.textContent = "网络异常，请稍后再试";
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "保存修改";
+        }
+      });
+
+      $("clear-pwd-btn").addEventListener("click", async () => {
+        const adminKey = $("admin-key").value.trim();
+        const code = $("q-code").value.trim();
+        const err = $("q-save-err");
+        err.textContent = "";
+        if (!code) { err.textContent = "请先查询要修改的链接"; return; }
+        try {
+          const data = await post("/api/update-code", { adminKey, code, clearPassword: true });
+          if (!data.ok) {
+            err.textContent = data.error === "forbidden" ? "管理员密钥不正确" : "操作失败：" + (data.error || "未知错误");
+            return;
+          }
+          fillQuery(data);
+        } catch (e) {
+          err.textContent = "网络异常，请稍后再试";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

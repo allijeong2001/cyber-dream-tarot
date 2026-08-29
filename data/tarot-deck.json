@@ -1,0 +1,782 @@
+[
+  {
+    "name": "愚者",
+    "arcana": "major",
+    "suit": null,
+    "number": 0,
+    "upright_keywords": ["新开始", "冒险", "纯真", "自由"],
+    "reversed_keywords": ["鲁莽", "犹豫", "计划不周", "逃避"],
+    "upright_meaning": "新的起点，勇敢冒险。",
+    "reversed_meaning": "鲁莽冲动，缺乏计划。"
+  },
+  {
+    "name": "魔术师",
+    "arcana": "major",
+    "suit": null,
+    "number": 1,
+    "upright_keywords": ["创造", "行动", "专注", "资源"],
+    "reversed_keywords": ["欺骗", "能力滥用", "缺乏方向", "犹豫"],
+    "upright_meaning": "拥有资源，创造实现。",
+    "reversed_meaning": "能力误用，方向迷茫。"
+  },
+  {
+    "name": "女祭司",
+    "arcana": "major",
+    "suit": null,
+    "number": 2,
+    "upright_keywords": ["直觉", "潜意识", "神秘", "内在智慧"],
+    "reversed_keywords": ["忽视直觉", "秘密暴露", "表面化", "情绪波动"],
+    "upright_meaning": "倾听直觉，探索内在。",
+    "reversed_meaning": "忽视内心，真相被掩。"
+  },
+  {
+    "name": "女皇",
+    "arcana": "major",
+    "suit": null,
+    "number": 3,
+    "upright_keywords": ["丰盛", "滋养", "感性", "创造力"],
+    "reversed_keywords": ["依赖", "创造力受阻", "过度保护", "空虚"],
+    "upright_meaning": "丰盛滋养，充满爱意。",
+    "reversed_meaning": "过度依赖，灵感枯竭。"
+  },
+  {
+    "name": "皇帝",
+    "arcana": "major",
+    "suit": null,
+    "number": 4,
+    "upright_keywords": ["权威", "稳定", "掌控", "结构"],
+    "reversed_keywords": ["固执", "控制欲", "缺乏弹性", "滥用权力"],
+    "upright_meaning": "稳固秩序，承担责任。",
+    "reversed_meaning": "僵化固执，控制过度。"
+  },
+  {
+    "name": "教皇",
+    "arcana": "major",
+    "suit": null,
+    "number": 5,
+    "upright_keywords": ["传统", "指引", "信仰", "学习"],
+    "reversed_keywords": ["教条", "盲目跟从", "约束", "反叛"],
+    "upright_meaning": "遵循传统，寻求指引。",
+    "reversed_meaning": "盲目信从，束缚自我。"
+  },
+  {
+    "name": "恋人",
+    "arcana": "major",
+    "suit": null,
+    "number": 6,
+    "upright_keywords": ["和谐", "选择", "关系深化", "爱"],
+    "reversed_keywords": ["失衡", "价值冲突", "犹豫不决", "分离"],
+    "upright_meaning": "关系和谐，真心相连。",
+    "reversed_meaning": "关系失衡，选择困难。"
+  },
+  {
+    "name": "战车",
+    "arcana": "major",
+    "suit": null,
+    "number": 7,
+    "upright_keywords": ["意志", "胜利", "前进", "决心"],
+    "reversed_keywords": ["失控", "方向错误", "冲突", "缺乏意志"],
+    "upright_meaning": "坚定意志，勇往直前。",
+    "reversed_meaning": "失去控制，方向混乱。"
+  },
+  {
+    "name": "力量",
+    "arcana": "major",
+    "suit": null,
+    "number": 8,
+    "upright_keywords": ["勇气", "耐心", "内在力量", "温柔"],
+    "reversed_keywords": ["自我怀疑", "冲动", "软弱", "缺乏耐心"],
+    "upright_meaning": "以柔克刚，内在强大。",
+    "reversed_meaning": "怀疑自己，力量不足。"
+  },
+  {
+    "name": "隐者",
+    "arcana": "major",
+    "suit": null,
+    "number": 9,
+    "upright_keywords": ["内省", "独处", "寻求真理", "指引"],
+    "reversed_keywords": ["孤立", "逃避", "过度谨慎", "孤独"],
+    "upright_meaning": "向内探索，寻求智慧。",
+    "reversed_meaning": "过度孤僻，逃避现实。"
+  },
+  {
+    "name": "命运之轮",
+    "arcana": "major",
+    "suit": null,
+    "number": 10,
+    "upright_keywords": ["转机", "循环", "命运", "机遇"],
+    "reversed_keywords": ["厄运", "抗拒变化", "停滞", "坏运气"],
+    "upright_meaning": "命运转动，迎来转机。",
+    "reversed_meaning": "时运不济，变化受阻。"
+  },
+  {
+    "name": "正义",
+    "arcana": "major",
+    "suit": null,
+    "number": 11,
+    "upright_keywords": ["公正", "因果", "责任", "平衡"],
+    "reversed_keywords": ["不公", "逃避责任", "失衡", "偏见"],
+    "upright_meaning": "公正裁决，因果平衡。",
+    "reversed_meaning": "不公对待，责任逃避。"
+  },
+  {
+    "name": "倒吊人",
+    "arcana": "major",
+    "suit": null,
+    "number": 12,
+    "upright_keywords": ["换位思考", "牺牲", "等待", "暂停"],
+    "reversed_keywords": ["无谓牺牲", "拖延", "僵持", "缺乏奉献"],
+    "upright_meaning": "换个角度，静待时机。",
+    "reversed_meaning": "无谓牺牲，停滞不前。"
+  },
+  {
+    "name": "死神",
+    "arcana": "major",
+    "suit": null,
+    "number": 13,
+    "upright_keywords": ["结束", "转变", "重生", "放下"],
+    "reversed_keywords": ["抗拒结束", "恐惧改变", "停滞", "无法放下"],
+    "upright_meaning": "结束旧有，迎来新生。",
+    "reversed_meaning": "抗拒改变，无法向前。"
+  },
+  {
+    "name": "节制",
+    "arcana": "major",
+    "suit": null,
+    "number": 14,
+    "upright_keywords": ["平衡", "调和", "耐心", "中庸"],
+    "reversed_keywords": ["失衡", "过度", "缺乏节制", "冲突"],
+    "upright_meaning": "调和平衡，适度而为。",
+    "reversed_meaning": "过度放纵，失去平衡。"
+  },
+  {
+    "name": "恶魔",
+    "arcana": "major",
+    "suit": null,
+    "number": 15,
+    "upright_keywords": ["诱惑", "束缚", "欲望", "执念"],
+    "reversed_keywords": ["挣脱束缚", "觉醒", "重获自由", "看清真相"],
+    "upright_meaning": "陷入欲望，受其束缚。",
+    "reversed_meaning": "挣脱枷锁，重获自由。"
+  },
+  {
+    "name": "高塔",
+    "arcana": "major",
+    "suit": null,
+    "number": 16,
+    "upright_keywords": ["突变", "打破", "真相", "震荡"],
+    "reversed_keywords": ["灾难延续", "恐惧改变", "勉强维持", "崩塌延迟"],
+    "upright_meaning": "突然崩塌，真相显现。",
+    "reversed_meaning": "避免崩溃，但隐患仍在。"
+  },
+  {
+    "name": "星星",
+    "arcana": "major",
+    "suit": null,
+    "number": 17,
+    "upright_keywords": ["希望", "疗愈", "灵感", "宁静"],
+    "reversed_keywords": ["失去信心", "悲观", "幻灭", "缺乏灵感"],
+    "upright_meaning": "希望照耀，疗愈身心。",
+    "reversed_meaning": "信心受挫，希望渺茫。"
+  },
+  {
+    "name": "月亮",
+    "arcana": "major",
+    "suit": null,
+    "number": 18,
+    "upright_keywords": ["不安", "幻象", "潜意识", "迷惑"],
+    "reversed_keywords": ["真相浮现", "恐惧消散", "清晰", "走出迷雾"],
+    "upright_meaning": "陷入迷惘，幻象丛生。",
+    "reversed_meaning": "迷雾散去，真相渐明。"
+  },
+  {
+    "name": "太阳",
+    "arcana": "major",
+    "suit": null,
+    "number": 19,
+    "upright_keywords": ["快乐", "成功", "活力", "清晰"],
+    "reversed_keywords": ["暂时阴霾", "过度乐观", "延迟", "活力不足"],
+    "upright_meaning": "阳光普照，快乐成功。",
+    "reversed_meaning": "喜悦延迟，需待时机。"
+  },
+  {
+    "name": "审判",
+    "arcana": "major",
+    "suit": null,
+    "number": 20,
+    "upright_keywords": ["觉醒", "重生", "召唤", "回顾"],
+    "reversed_keywords": ["自我怀疑", "拒绝召唤", "遗憾", "无法释怀"],
+    "upright_meaning": "内心觉醒，回应召唤。",
+    "reversed_meaning": "逃避审判，难以释怀。"
+  },
+  {
+    "name": "世界",
+    "arcana": "major",
+    "suit": null,
+    "number": 21,
+    "upright_keywords": ["完成", "整合", "圆满", "达成"],
+    "reversed_keywords": ["未完成", "缺乏收尾", "停滞", "不圆满"],
+    "upright_meaning": "圆满达成，阶段结束。",
+    "reversed_meaning": "接近完成，尚缺一步。"
+  },
+  {
+    "name": "权杖一",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 1,
+    "upright_keywords": ["新行动", "灵感", "机会", "成长"],
+    "reversed_keywords": ["延迟", "缺乏方向", "错过时机", "犹豫"],
+    "upright_meaning": "新的行动与创意涌现。",
+    "reversed_meaning": "计划受阻，动力不足。"
+  },
+  {
+    "name": "权杖二",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 2,
+    "upright_keywords": ["计划", "进展", "决策", "远见"],
+    "reversed_keywords": ["恐惧未知", "计划不周", "缺乏远见", "犹豫不决"],
+    "upright_meaning": "规划未来，勇敢迈出下一步。",
+    "reversed_meaning": "因害怕而停滞不前。"
+  },
+  {
+    "name": "权杖三",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 3,
+    "upright_keywords": ["扩张", "远见", "等待", "合作"],
+    "reversed_keywords": ["延误", "目光短浅", "合作受阻", "错失机会"],
+    "upright_meaning": "远航在望，成果可期。",
+    "reversed_meaning": "计划延迟，错失良机。"
+  },
+  {
+    "name": "权杖四",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 4,
+    "upright_keywords": ["庆祝", "和谐", "稳定", "归属"],
+    "reversed_keywords": ["不稳定", "家庭矛盾", "庆祝延迟", "缺乏根基"],
+    "upright_meaning": "和谐安定，值得庆祝。",
+    "reversed_meaning": "根基不稳，欢庆难至。"
+  },
+  {
+    "name": "权杖五",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 5,
+    "upright_keywords": ["冲突", "竞争", "分歧", "挑战"],
+    "reversed_keywords": ["化解冲突", "避免竞争", "妥协", "内部矛盾"],
+    "upright_meaning": "竞争激烈，意见不合。",
+    "reversed_meaning": "冲突缓和，寻求共识。"
+  },
+  {
+    "name": "权杖六",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 6,
+    "upright_keywords": ["胜利", "认可", "进展", "自信"],
+    "reversed_keywords": ["失败", "缺乏认可", "骄傲自满", "延迟成功"],
+    "upright_meaning": "胜利在望，获得认可。",
+    "reversed_meaning": "成功延迟，自信受挫。"
+  },
+  {
+    "name": "权杖七",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 7,
+    "upright_keywords": ["防御", "坚持", "挑战", "立场"],
+    "reversed_keywords": ["放弃防守", "疲惫", "被压垮", "妥协"],
+    "upright_meaning": "坚守立场，抵御挑战。",
+    "reversed_meaning": "力不从心，防线动摇。"
+  },
+  {
+    "name": "权杖八",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 8,
+    "upright_keywords": ["迅速行动", "消息", "旅行", "进展"],
+    "reversed_keywords": ["延误", "混乱", "行动受阻", "消息延迟"],
+    "upright_meaning": "事情快速发展，消息传来。",
+    "reversed_meaning": "节奏混乱，进展缓慢。"
+  },
+  {
+    "name": "权杖九",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 9,
+    "upright_keywords": ["韧性", "坚持", "最后的防守", "警惕"],
+    "reversed_keywords": ["疲惫", "放弃", "过度防备", "孤立"],
+    "upright_meaning": "虽疲累仍坚持防守。",
+    "reversed_meaning": "身心俱疲，准备放弃。"
+  },
+  {
+    "name": "权杖十",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": 10,
+    "upright_keywords": ["负担", "责任", "压力", "努力"],
+    "reversed_keywords": ["放下重担", "过度劳累", "逃避责任", "减压"],
+    "upright_meaning": "肩负重任，压力山大。",
+    "reversed_meaning": "学会放下，减轻负担。"
+  },
+  {
+    "name": "权杖侍者",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": "侍者",
+    "upright_keywords": ["热情", "探索", "新消息", "冒险"],
+    "reversed_keywords": ["缺乏方向", "冲动", "坏消息", "懒散"],
+    "upright_meaning": "充满热情，探索新事物。",
+    "reversed_meaning": "冲动行事，方向不明。"
+  },
+  {
+    "name": "权杖骑士",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": "骑士",
+    "upright_keywords": ["冒险", "冲动", "行动", "热情"],
+    "reversed_keywords": ["鲁莽", "延迟", "缺乏耐心", "半途而废"],
+    "upright_meaning": "勇敢行动，追求冒险。",
+    "reversed_meaning": "冲动鲁莽，难以持久。"
+  },
+  {
+    "name": "权杖王后",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": "王后",
+    "upright_keywords": ["自信", "独立", "魅力", "热情"],
+    "reversed_keywords": ["缺乏自信", "嫉妒", "控制欲", "疲惫"],
+    "upright_meaning": "自信独立，魅力四射。",
+    "reversed_meaning": "自信受挫，情绪不稳。"
+  },
+  {
+    "name": "权杖国王",
+    "arcana": "minor",
+    "suit": "权杖",
+    "number": "国王",
+    "upright_keywords": ["领导力", "远见", "权威", "果断"],
+    "reversed_keywords": ["独裁", "缺乏远见", "冲动决策", "专横"],
+    "upright_meaning": "有远见的领导者。",
+    "reversed_meaning": "专横独断，缺乏远见。"
+  },
+  {
+    "name": "圣杯一",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 1,
+    "upright_keywords": ["新感情", "直觉", "爱", "丰盛"],
+    "reversed_keywords": ["情感空虚", "压抑爱意", "失望", "情绪不稳"],
+    "upright_meaning": "新的情感与爱意涌现。",
+    "reversed_meaning": "情感受阻，内心空虚。"
+  },
+  {
+    "name": "圣杯二",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 2,
+    "upright_keywords": ["合作", "联结", "和谐", "伙伴关系"],
+    "reversed_keywords": ["关系失衡", "误解", "分离", "不信任"],
+    "upright_meaning": "平等和谐的情感联结。",
+    "reversed_meaning": "关系出现裂痕与误解。"
+  },
+  {
+    "name": "圣杯三",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 3,
+    "upright_keywords": ["友谊", "庆祝", "团体", "分享"],
+    "reversed_keywords": ["过度放纵", "团体矛盾", "孤立", "流言"],
+    "upright_meaning": "与朋友欢庆，分享喜悦。",
+    "reversed_meaning": "团体不和，过度享乐。"
+  },
+  {
+    "name": "圣杯四",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 4,
+    "upright_keywords": ["冷漠", "沉思", "不满", "机会被忽视"],
+    "reversed_keywords": ["觉醒", "接受机会", "重新投入", "摆脱倦怠"],
+    "upright_meaning": "对现状不满，陷入沉思。",
+    "reversed_meaning": "重拾兴趣，接受新机会。"
+  },
+  {
+    "name": "圣杯五",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 5,
+    "upright_keywords": ["失落", "悲伤", "遗憾", "聚焦失去"],
+    "reversed_keywords": ["接受", "走出悲伤", "看到希望", "放下过去"],
+    "upright_meaning": "沉溺于失去与悲伤。",
+    "reversed_meaning": "开始接纳，走向疗愈。"
+  },
+  {
+    "name": "圣杯六",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 6,
+    "upright_keywords": ["怀旧", "童年", "给予", "纯真"],
+    "reversed_keywords": ["沉溺过去", "不愿长大", "依赖", "停滞"],
+    "upright_meaning": "回忆美好，重温旧情。",
+    "reversed_meaning": "被困在过去，拒绝成长。"
+  },
+  {
+    "name": "圣杯七",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 7,
+    "upright_keywords": ["幻想", "选择", "迷惑", "白日梦"],
+    "reversed_keywords": ["清醒", "做出选择", "现实", "聚焦目标"],
+    "upright_meaning": "面对众多选择而迷惑。",
+    "reversed_meaning": "看清现实，做出决定。"
+  },
+  {
+    "name": "圣杯八",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 8,
+    "upright_keywords": ["离去", "探索", "放弃", "寻求更深意义"],
+    "reversed_keywords": ["恐惧离开", "停滞", "勉强维持", "迷茫"],
+    "upright_meaning": "离开熟悉，寻求更深满足。",
+    "reversed_meaning": "害怕改变，宁愿将就。"
+  },
+  {
+    "name": "圣杯九",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 9,
+    "upright_keywords": ["满足", "愿望实现", "享受", "幸福"],
+    "reversed_keywords": ["不满足", "过度放纵", "愿望落空", "空虚"],
+    "upright_meaning": "愿望实现，心满意足。",
+    "reversed_meaning": "物质满足，内心空虚。"
+  },
+  {
+    "name": "圣杯十",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": 10,
+    "upright_keywords": ["圆满", "幸福", "家庭", "和谐"],
+    "reversed_keywords": ["家庭不和", "幸福破灭", "疏离", "矛盾"],
+    "upright_meaning": "家庭美满，幸福圆满。",
+    "reversed_meaning": "家庭关系出现裂痕。"
+  },
+  {
+    "name": "圣杯侍者",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": "侍者",
+    "upright_keywords": ["创意", "敏感", "消息", "直觉"],
+    "reversed_keywords": ["情绪化", "逃避", "坏消息", "不成熟"],
+    "upright_meaning": "富有想象力与直觉。",
+    "reversed_meaning": "情绪波动，逃避现实。"
+  },
+  {
+    "name": "圣杯骑士",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": "骑士",
+    "upright_keywords": ["浪漫", "诱惑", "追求", "理想主义"],
+    "reversed_keywords": ["欺骗", "不切实际", "犹豫", "情感操纵"],
+    "upright_meaning": "浪漫追求，充满理想。",
+    "reversed_meaning": "浪漫幻想，缺乏行动。"
+  },
+  {
+    "name": "圣杯王后",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": "王后",
+    "upright_keywords": ["同情", "直觉", "温柔", "情感丰富"],
+    "reversed_keywords": ["情绪泛滥", "依赖", "过度敏感", "不切实际"],
+    "upright_meaning": "温柔慈爱，直觉敏锐。",
+    "reversed_meaning": "情绪失控，过于依赖。"
+  },
+  {
+    "name": "圣杯国王",
+    "arcana": "minor",
+    "suit": "圣杯",
+    "number": "国王",
+    "upright_keywords": ["情感成熟", "宽容", "平衡", "冷静"],
+    "reversed_keywords": ["情感压抑", "冷漠", "操纵", "情绪化"],
+    "upright_meaning": "情感成熟，宽容大度。",
+    "reversed_meaning": "情感压抑，难以亲近。"
+  },
+  {
+    "name": "宝剑一",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 1,
+    "upright_keywords": ["真理", "清晰", "突破", "公正"],
+    "reversed_keywords": ["混乱", "误解", "错误判断", "真相被掩"],
+    "upright_meaning": "思维清晰，真理显现。",
+    "reversed_meaning": "思维混乱，真相不明。"
+  },
+  {
+    "name": "宝剑二",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 2,
+    "upright_keywords": ["僵局", "抉择", "逃避", "平衡"],
+    "reversed_keywords": ["做出选择", "打破僵局", "面对现实", "犹豫结束"],
+    "upright_meaning": "面临抉择，僵持不下。",
+    "reversed_meaning": "打破僵局，做出决定。"
+  },
+  {
+    "name": "宝剑三",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 3,
+    "upright_keywords": ["心碎", "痛苦", "分离", "悲伤"],
+    "reversed_keywords": ["愈合", "释放痛苦", "原谅", "走出阴霾"],
+    "upright_meaning": "心如刀割，痛苦难当。",
+    "reversed_meaning": "开始愈合，放下伤痛。"
+  },
+  {
+    "name": "宝剑四",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 4,
+    "upright_keywords": ["休息", "恢复", "沉思", "静养"],
+    "reversed_keywords": ["无法休息", "疲惫", "恢复缓慢", "被迫休息"],
+    "upright_meaning": "休养生息，恢复精力。",
+    "reversed_meaning": "身心俱疲，难以休息。"
+  },
+  {
+    "name": "宝剑五",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 5,
+    "upright_keywords": ["冲突", "失败", "争吵", "代价"],
+    "reversed_keywords": ["和解", "放下争执", "妥协", "避免冲突"],
+    "upright_meaning": "冲突激烈，代价沉重。",
+    "reversed_meaning": "放下争执，寻求和解。"
+  },
+  {
+    "name": "宝剑六",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 6,
+    "upright_keywords": ["过渡", "疗愈", "旅行", "远离困境"],
+    "reversed_keywords": ["无法逃离", "情绪包袱", "停滞", "回归问题"],
+    "upright_meaning": "离开困境，走向平静。",
+    "reversed_meaning": "无法摆脱，问题重现。"
+  },
+  {
+    "name": "宝剑七",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 7,
+    "upright_keywords": ["策略", "欺骗", "逃避", "隐秘行动"],
+    "reversed_keywords": ["坦白", "揭露真相", "诚实", "放弃欺骗"],
+    "upright_meaning": "运用策略，暗中行动。",
+    "reversed_meaning": "真相暴露，诚实面对。"
+  },
+  {
+    "name": "宝剑八",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 8,
+    "upright_keywords": ["限制", "束缚", "困境", "自我设限"],
+    "reversed_keywords": ["解放", "突破限制", "自由", "看清真相"],
+    "upright_meaning": "感到被困，动弹不得。",
+    "reversed_meaning": "挣脱束缚，重获自由。"
+  },
+  {
+    "name": "宝剑九",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 9,
+    "upright_keywords": ["焦虑", "噩梦", "担忧", "绝望"],
+    "reversed_keywords": ["缓解焦虑", "噩梦结束", "希望", "重获平静"],
+    "upright_meaning": "深夜焦虑，噩梦缠身。",
+    "reversed_meaning": "焦虑缓解，看到希望。"
+  },
+  {
+    "name": "宝剑十",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": 10,
+    "upright_keywords": ["终结", "痛苦", "谷底", "结束"],
+    "reversed_keywords": ["重获新生", "谷底反弹", "恢复", "摆脱绝望"],
+    "upright_meaning": "痛苦至极，一切终结。",
+    "reversed_meaning": "触底反弹，迎来新生。"
+  },
+  {
+    "name": "宝剑侍者",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": "侍者",
+    "upright_keywords": ["好奇", "警惕", "学习", "观察"],
+    "reversed_keywords": ["轻信", "谣言", "缺乏判断", "轻率"],
+    "upright_meaning": "好奇敏锐，善于观察。",
+    "reversed_meaning": "轻信谣言，缺乏判断。"
+  },
+  {
+    "name": "宝剑骑士",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": "骑士",
+    "upright_keywords": ["迅速", "果决", "好胜", "冲锋"],
+    "reversed_keywords": ["鲁莽", "冲动", "好斗", "不计后果"],
+    "upright_meaning": "行动迅猛，勇往直前。",
+    "reversed_meaning": "鲁莽冲动，容易犯错。"
+  },
+  {
+    "name": "宝剑王后",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": "王后",
+    "upright_keywords": ["智慧", "独立", "敏锐", "理性"],
+    "reversed_keywords": ["刻薄", "冷漠", "过度理性", "疏离"],
+    "upright_meaning": "智慧理性，独立自主。",
+    "reversed_meaning": "过于理性，显得冷漠。"
+  },
+  {
+    "name": "宝剑国王",
+    "arcana": "minor",
+    "suit": "宝剑",
+    "number": "国王",
+    "upright_keywords": ["理性", "权威", "公正", "分析"],
+    "reversed_keywords": ["专横", "不公", "冷酷", "滥用权力"],
+    "upright_meaning": "理性公正，权威分析。",
+    "reversed_meaning": "冷酷专横，缺乏公正。"
+  },
+  {
+    "name": "钱币一",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 1,
+    "upright_keywords": ["新机会", "物质", "开端", "繁荣"],
+    "reversed_keywords": ["错失机会", "物质损失", "计划延迟", "根基不稳"],
+    "upright_meaning": "新机会与物质开端。",
+    "reversed_meaning": "机会流失，财务不稳。"
+  },
+  {
+    "name": "钱币二",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 2,
+    "upright_keywords": ["平衡", "变通", "抉择", "适应"],
+    "reversed_keywords": ["失衡", "手忙脚乱", "财务混乱", "无法兼顾"],
+    "upright_meaning": "灵活变通，维持平衡。",
+    "reversed_meaning": "顾此失彼，难以平衡。"
+  },
+  {
+    "name": "钱币三",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 3,
+    "upright_keywords": ["合作", "技能", "成长", "认可"],
+    "reversed_keywords": ["合作破裂", "缺乏技能", "工作失误", "不被认可"],
+    "upright_meaning": "团队合作，技能提升。",
+    "reversed_meaning": "合作不顺，技能不足。"
+  },
+  {
+    "name": "钱币四",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 4,
+    "upright_keywords": ["掌控", "保守", "安全", "节俭"],
+    "reversed_keywords": ["过度控制", "吝啬", "失去安全感", "财务僵化"],
+    "upright_meaning": "紧握资源，追求稳定。",
+    "reversed_meaning": "过度控制，反而失去。"
+  },
+  {
+    "name": "钱币五",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 5,
+    "upright_keywords": ["匮乏", "困境", "孤立", "财务危机"],
+    "reversed_keywords": ["走出困境", "获得帮助", "恢复", "重建稳定"],
+    "upright_meaning": "财务困难，孤立无援。",
+    "reversed_meaning": "境况好转，获得支持。"
+  },
+  {
+    "name": "钱币六",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 6,
+    "upright_keywords": ["给予", "接受", "公平", "慈善"],
+    "reversed_keywords": ["不公平", "债务", "剥削", "失衡"],
+    "upright_meaning": "公平交换，施与受。",
+    "reversed_meaning": "分配不公，关系失衡。"
+  },
+  {
+    "name": "钱币七",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 7,
+    "upright_keywords": ["评估", "耐心", "收获", "等待"],
+    "reversed_keywords": ["缺乏耐心", "收获延迟", "投资失误", "焦虑"],
+    "upright_meaning": "耐心等待，评估成果。",
+    "reversed_meaning": "急于求成，错失回报。"
+  },
+  {
+    "name": "钱币八",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 8,
+    "upright_keywords": ["勤奋", "专注", "技艺", "精进"],
+    "reversed_keywords": ["懒惰", "粗心", "缺乏专注", "技艺停滞"],
+    "upright_meaning": "勤学苦练，精益求精。",
+    "reversed_meaning": "懒散马虎，难有进步。"
+  },
+  {
+    "name": "钱币九",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 9,
+    "upright_keywords": ["独立", "成果", "享受", "自持"],
+    "reversed_keywords": ["过度独立", "财务压力", "孤立", "成果被毁"],
+    "upright_meaning": "独立自信，享受成果。",
+    "reversed_meaning": "过于独立，倍感压力。"
+  },
+  {
+    "name": "钱币十",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": 10,
+    "upright_keywords": ["传承", "富足", "家族", "稳定"],
+    "reversed_keywords": ["家族矛盾", "财务纷争", "失去传承", "不稳定"],
+    "upright_meaning": "家业兴旺，传承有序。",
+    "reversed_meaning": "家族失和，财富流失。"
+  },
+  {
+    "name": "钱币侍者",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": "侍者",
+    "upright_keywords": ["务实", "学习", "新机会", "计划"],
+    "reversed_keywords": ["不切实际", "懒惰", "错过学习机会", "计划不周"],
+    "upright_meaning": "脚踏实地，学习新技能。",
+    "reversed_meaning": "好高骛远，错失机会。"
+  },
+  {
+    "name": "钱币骑士",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": "骑士",
+    "upright_keywords": ["可靠", "勤奋", "保守", "坚持"],
+    "reversed_keywords": ["停滞", "顽固", "缺乏动力", "拖延"],
+    "upright_meaning": "踏实可靠，稳步前进。",
+    "reversed_meaning": "墨守成规，缺乏进展。"
+  },
+  {
+    "name": "钱币王后",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": "王后",
+    "upright_keywords": ["滋养", "实际", "慷慨", "持家"],
+    "reversed_keywords": ["忽视家庭", "过度操劳", "物质主义", "缺乏安全感"],
+    "upright_meaning": "温柔务实，持家有道。",
+    "reversed_meaning": "过度操劳，忽略自我。"
+  },
+  {
+    "name": "钱币国王",
+    "arcana": "minor",
+    "suit": "钱币",
+    "number": "国王",
+    "upright_keywords": ["财富", "稳健", "成就", "务实"],
+    "reversed_keywords": ["固执", "贪婪", "财务失误", "缺乏远见"],
+    "upright_meaning": "稳健务实，事业有成。",
+    "reversed_meaning": "过于保守，错失良机。"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "name": "cyber-dream-tarot",
+  "version": "1.0.0",
+  "description": "赛博梦占 · 塔罗牌驱动的 AI 恋人聊天应用（Cloudflare Workers + KV + DeepSeek）",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "deploy": "wrangler deploy"
+  }
+}
