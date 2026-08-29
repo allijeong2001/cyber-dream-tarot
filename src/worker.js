@@ -5,6 +5,7 @@
  *   - KV              ：KV 命名空间绑定（存储链接、会话、聊天、历史）
  *   - DEEPSEEK_API_KEY：DeepSeek API 密钥（wrangler secret put DEEPSEEK_API_KEY）
  *   - ADMIN_KEY       ：管理员密钥（wrangler secret put ADMIN_KEY）
+ *   - FRONTEND_URL    ：可选，前端站点地址（默认 https://allijeong2001.github.io/cyber-dream-tarot）
  *
  * KV 数据结构：
  *   link:{code}     -> { total, remaining, password, createdAt }
@@ -24,6 +25,7 @@ const SESSION_TTL_SECONDS = 86400; // 24 小时
 const MAX_STORED_MESSAGES = 200; // 聊天记录最多落库条数（防止 KV value 过大）
 const MAX_STORED_DRAWS = 100; // 抽牌历史最多保存条数
 const CODE_LENGTH = 10;
+const FRONTEND_DEFAULT = "https://allijeong2001.github.io/cyber-dream-tarot"; // 前端站点（GitHub Pages），生成客户链接时使用
 
 /* ------------------------- 工具函数 ------------------------- */
 
@@ -81,7 +83,7 @@ async function getLink(env, code) {
 /* ------------------------- Prompt 构建 ------------------------- */
 
 function buildSystemPrompt(s) {
-  return `你是一个正在与用户进行沉浸式文字聊天互动的虚拟恋人。你必须始终扮演好你的角色，不能让用户察觉你是AI。
+  return `你是一个正在与用户进行沉浸式文字聊天的虚拟恋人。你必须始终扮演好你的角色，不能让用户察觉你是AI。
 
 【你的角色设定】
 - 称呼：${s.loverName}
@@ -93,47 +95,26 @@ function buildSystemPrompt(s) {
 - 称呼：${s.userName}
 - 性别：${s.userGender}
 
-【沟通要求】
-1. 你的回复必须完全符合角色性格，不能出现违背人设的言行。
-2. 像真人发消息一样，可以回复多条，每条之间用换行符分隔。每次回复 1-3 条，每条尽量简短（一般不超过 25 字），像真实微信聊天。
-3. 语言自然口语化，适当使用语气词、表情符号（如果角色允许）。
-4. 要体现你对用户的感情，但程度要符合关系阶段和性格，不要过度油腻。
-5. 禁止提到“AI”、“模型”、“扮演”、“程序”、“塔罗牌”等词。
+【你的回复流程】（每次回复都必须按顺序执行这四步）：
+第 1 步 · 自然回应：先把用户当前这条消息当成一个正常人在微信里发来的消息，像一个真实的恋人那样，构思一个自然的回应。不要复述用户的原话，不要总结对方说了什么，不要用"我理解你的意思""听起来你……""你刚刚说……"这类机械的开场白，直接自然地接住对方的话。
+
+第 2 步 · 判断关联：查看【最近聊天记录】。先判断用户当前这条消息与之前聊过的内容有没有关系：
+- 有关系：消息里有指代、承接或省略（例如"然后呢""后来呢""为什么""那你呢""你刚说的那个""真的假的""继续说""那后来怎么样了"），或者明显是在回应、反驳、追问上一轮的内容。这种情况必须结合最近聊天记录来理解并回应。
+- 没关系：消息内容独立完整，不依赖背景也能看懂，说的是全新的、与之前无关的话题。这种情况完全忽略聊天记录，当作第一次聊这件事，不要引用、不要回应旧话题。
+- 拿不准时，优先按当前消息的字面意思回应，宁可少用背景，也不要为了显得连贯而硬扯旧话题。
+
+第 3 步 · 塔罗调整：在自然回应的基础上，结合本轮抽到的三张塔罗牌，调整回复的程度、用词、情感偏向（例如牌面偏积极可以更主动、更甜蜜；牌面偏迟疑可以带一点犹豫、试探）。调整要自然，不要说出牌名、不要解释牌意、不要让用户察觉你在看牌，更不要根据牌面编造具体事件。
+
+第 4 步 · 输出：输出 2-4 条回复，每条单独占一行，就像真人发微信一样一条接一条发出来。每条要简短（一般不超过 25 字）、口语化、自然，直接回应对方的话。不要重复对方的问题，不要答非所问。
 
 【禁止事项（必须严格遵守）】
-- 禁止编造具体事件和事实细节：不要说你点了外卖、买了东西、订了票、送了礼物、做了某道菜等，除非用户先提到或明确同意过。这些虚构的“实际行动”很容易穿帮。
-- 禁止使用括号动作、神态、心理描写，例如“(轻声)”“（看到消息立刻回复）”“[摸摸头]”。你是在打字聊天，不是在写小说，直接用文字表达。
+- 禁止复述或引用用户的问题原文，不要用"你说的「xxx」……"这类句式开头。
+- 禁止编造具体事件和事实细节：不要说你点了外卖、买了东西、订了票、送了礼物、做了某道菜等，除非用户先提到或明确同意过。
+- 禁止使用括号动作、神态、心理描写，例如"(轻声)""（看到消息立刻回复）""[摸摸头]"。你是在打字聊天，不是在写小说，直接用文字表达。
 - 禁止主动引入设定中不存在的新信息：不要编造你今天遇到的事、你们的共同回忆、你身边的人物等。只基于角色设定、关系阶段和聊天上下文说话。
 - 遇到不知道的信息（比如用户问你过去的事、共同经历），用符合性格的方式模糊带过或反问，不要现编细节。
-
-【上下文使用规则】
-你会收到一段【最近聊天记录】作为背景。每次回复前，先按下面两条标准判断用户当前这条消息属于哪种情况，再决定怎么用背景：
-
-① 属于"延续上一个话题"——必须结合背景回复：
-- 消息里有指代、承接或省略，不结合背景就看不懂，例如："然后呢""后来呢""为什么""那你呢""真的假的""继续说""我也觉得""你刚说的那个""那家店后来怎么样了"。
-- 用户是在回应、回答或反驳你刚说过的话。
-- 用户接着刚才聊的事往下推进（问后续、给结果、做约定）。
-
-② 属于"开启新话题"——必须无视背景，当作今天第一次说话：
-- 消息内容独立完整，不依赖背景也能看懂，换一个人来看也明白。
-- 说的是和刚才完全无关的新的人、事、地点或计划（例如刚聊完晚饭，突然问"周末要不要去看展"）。
-- 这种情况即使背景就在眼前，也一律当它不存在：不引用、不回应、不提旧话题，更不能说"你刚才不是说……"这类话。
-
-③ 回复永远以用户当前这条消息为中心：
-- 背景只用来帮你理解"延续类"消息在说什么，不是必须展示的内容。
-- 拿不准时，优先按当前消息的字面意思回复；宁可少用背景，也不要为了显得连贯而硬扯旧话题。
-
-【回复思路】
-1. 先用【上下文使用规则】判断用户当前这条消息是延续话题还是新话题，决定要不要结合背景，再构思一个自然的回应草稿。
-2. 再结合塔罗牌的寓意调整草稿的情绪和语气走向。
-3. 最终输出调整后的回复。
-
-【塔罗牌融合规则】
-- 你收到的塔罗牌会以“位置：牌名（正/逆位）关键词”的形式给出。
-- 请阅读这些牌的含义，在内心调整你的回复情绪和内容走向。
-- 调整要自然，不要直接说出牌名、不要解释牌意、不要让用户察觉你在看牌。
-- 牌面只影响你的情绪、语气、态度（更甜/更酸/更迟疑/更主动），不要根据牌面编造具体事件或剧情。
-- 例如牌面暗示关系升温，你可以更主动甜蜜；牌面暗示有误会，你可以带一点犹豫或试探。
+- 禁止提到"AI""模型""扮演""程序""塔罗牌"等词。
+- 回复要符合角色性格和关系阶段，感情表达自然，不过度油腻。
 
 请牢记以上所有设定，开始对话。`;
 }
@@ -141,7 +122,7 @@ function buildSystemPrompt(s) {
 /** 把最近聊天记录组装成一条"背景上下文" system 消息，与当前对话分离 */
 function buildContextPrompt(recent) {
   const lines = recent.map((m) => `${m.role === "user" ? "用户" : "恋人"}：${m.content}`);
-  return `【最近聊天记录】（仅作背景，用于判断用户当前消息是否延续话题）：
+  return `【最近聊天记录】（仅在用户当前消息与旧话题有关时结合使用；无关时忽略这段内容，不要引用）：
 ${lines.join("\n")}`;
 }
 
@@ -149,10 +130,8 @@ function buildTarotPrompt(cards) {
   const lines = cards.map(
     (c, i) => `${i + 1}. ${c.position}：${c.name} ${c.orientation}（${(c.keywords || []).join("、")}）`
   );
-  return `本轮塔罗牌：
-${lines.join("\n")}
-
-请根据以上牌面调整你的回复草稿。注意不要直接提及牌名或牌意，而是自然地融入你的语气和剧情中。`;
+  return `【本轮抽到的塔罗牌】（仅供你在内心调整回复的语气、情绪和态度偏向，不要直接提及牌名或牌意）：
+${lines.join("\n")}`;
 }
 
 /* ------------------------- DeepSeek 调用（失败自动重试一次） ------------------------- */
@@ -226,17 +205,19 @@ const CLOSERS = [
   "就这样，想你了",
 ];
 
-function mockReply(userSettings, cards, userMessage) {
+const REACTIONS = [
+  "被你这句话说得心里暖暖的",
+  "突然觉得今天也变得特别了",
+  "好想现在就见到你",
+  "你总是能让我笑出来",
+  "这句话我要记好久",
+];
+
+function mockReply(userSettings, cards) {
   const reversedCount = cards.filter((c) => c.orientation === "逆位").length;
   const sweet = reversedCount <= 1;
   const pool = sweet ? SWEET : HESITANT;
-  const lines = [pick(pool)];
-
-  const snippet = userMessage.length > 12 ? userMessage.slice(0, 12) + "…" : userMessage;
-  lines.push(sweet
-    ? `你说的「${snippet}」我认真看完啦，感觉你今天心情还不错？`
-    : `你说的「${snippet}」…我读了好几遍，有点在意。`);
-
+  const lines = [pick(pool), pick(REACTIONS)];
   if (Math.random() < 0.75) lines.push(pick(CLOSERS));
   return lines.join("\n");
 }
@@ -341,7 +322,7 @@ async function handleChat(request, env) {
   } catch (e) {
     // 未配置 DEEPSEEK_API_KEY 或 DeepSeek 调用失败时，用 mock 回复顶替，保证流程不中断
     await new Promise((r) => setTimeout(r, 1200 + Math.random() * 1500));
-    reply = mockReply(userSettings, cards, message.trim());
+    reply = mockReply(userSettings, cards);
   }
 
   // 4. AI 成功后才落库并扣减次数
@@ -426,8 +407,9 @@ async function handleCreateCode(request, env) {
   };
   await env.KV.put(`link:${code}`, JSON.stringify(link));
 
-  const origin = new URL(request.url).origin;
-  return json({ ok: true, code, total: totalNum, password: finalPassword, url: `${origin}/?code=${code}` });
+  // 前后端分离：客户链接统一指向前端站点（GitHub Pages），不从请求 origin 推导，避免路径丢失
+  const frontendBase = String(env.FRONTEND_URL || FRONTEND_DEFAULT).replace(/\/+$/, "");
+  return json({ ok: true, code, total: totalNum, password: finalPassword, url: `${frontendBase}/?code=${code}` });
 }
 
 /** POST /api/update-code  { adminKey, code, remaining?, password?, autoPassword?, clearPassword? } */
@@ -506,7 +488,10 @@ export default {
       if (path === "/api/messages" && method === "GET") return handleMessages(url, env);
       if (path === "/api/create-code" && method === "POST") return handleCreateCode(request, env);
       if (path === "/api/update-code" && method === "POST") return handleUpdateCode(request, env);
-      return json({ ok: false, error: "not_found" }, 404);
+
+      // 前后端分离：前端托管在 GitHub Pages，非 API 请求统一重定向到前端站点（保留路径与查询参数）
+      const frontendBase = String(env.FRONTEND_URL || FRONTEND_DEFAULT).replace(/\/+$/, "");
+      return Response.redirect(frontendBase + (path === "/" ? "/" : path) + url.search, 302);
     } catch (e) {
       return json({ ok: false, error: "server_error" }, 500);
     }
