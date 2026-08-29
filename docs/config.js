@@ -7,4 +7,4 @@
  *
  * 本地开发（dev-server.mjs 前后端同域）保持空字符串即可。
  */
-window.CYBER_DREAM_API_BASE = "";
+window.CYBER_DREAM_API_BASE = "https://cyber-dream-tarot.allijeong2001.workers.dev";
